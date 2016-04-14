@@ -1,0 +1,30 @@
+void fjaPrva(char *s, char *pom)
+{
+	char prezime[50], ime[50], srime[50];
+	int p = strchr(s, ' ') - s;
+	strncpy(prezime, s, p);
+	prezime[p] = '\0';
+	int p1 = strrchr(s, ' ') - s;
+	strncpy(ime, s + p1 + 1, p1);
+	ime[p1] = '\0';
+	int p2 = strchr(s, '(') - s;
+	strncpy(srime, s + p2 + 1, 1);
+	srime[1] = '\0';
+	strcat(prezime, " ");
+	strcat(prezime, srime);
+	strcat(prezime, ". ");
+	strcat(prezime, ime);
+	strcpy(pom, prezime);
+}
+void main()
+{
+	FILE *fd = fopen("srime.txt", "r");
+	char s[50], sn[50];
+	while (fgets(s, 50, fd))
+	{
+		fjaPrva(s, sn);
+		cout << "\nIzlaz: " << sn << endl;
+	}
+	fclose(fd);
+	system("pause");
+}
