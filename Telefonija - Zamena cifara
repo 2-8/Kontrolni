@@ -1,0 +1,42 @@
+void fjaPrva (char *s, char *pom)
+{
+	char broj[50],ime[50],broj2[50],prazan[40];
+	int p=strrchr(s,' ')-s;
+	strncpy(broj,s+p+1,6);
+	broj[6]='\0';
+	int p1=strchr(s,' ')-s;
+	strncpy(ime,s,p);
+	ime[p]='\0';
+	if(broj[0]=='3'||broj[0]=='4'||broj[0]=='5')
+		{
+		broj[0]='7';
+		strcat(ime," ");
+		strcat(ime,broj);
+		strcpy(pom,ime);
+		}
+			else if(broj[0]=='7')
+				{
+					strcat(ime," 33");
+					strcat(ime,broj+1);
+					strcpy(pom,ime);
+				}
+			else
+			{
+				strcat(ime," ");
+				strcat(ime,broj);
+				strcpy(pom,ime);
+			}
+			strcmp(broj,broj+1);
+}
+void main()
+{
+	FILE *fd = fopen("brojevi.txt", "r");
+	char s[50], sn[50];
+	while (fgets(s, 50, fd))
+	{
+		fjaPrva(s, sn);
+		cout << "\nIzgled novog: " << sn << endl;
+	}
+	fclose(fd);
+	system("pause");
+}
