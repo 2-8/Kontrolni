@@ -1,0 +1,30 @@
+void Pacijenti(char *sp, char *sn)
+{
+	char BZK[100], IiP[50], SIF[50];
+	int pp = strrchr(sp, ' ') - sp;
+	int p = strchr(sp, ' ') - sp;
+	strcpy(SIF, sp + pp + 2);
+	strncpy(BZK, sp, p);
+	BZK[p] = '\0';
+	strncpy(IiP, sp + p+1, pp - p);
+	IiP[pp - p] = '\0';
+	strcat(SIF, " ");
+	strcat(SIF, IiP);
+	strcat(SIF, " ");
+	strcat(SIF, BZK);
+	strcpy(sn, SIF);
+}
+void main()
+{
+	FILE *fd = fopen("Pacijenti.txt", "r");
+	char s[50], sn[50];
+	while (fgets(s, 50, fd))
+	{
+		Pacijenti(s, sn);
+		cout << "Izgled nove evidencije: " << sn << endl;
+	}
+	fclose(fd);
+	cout << "\nKRAJ!\n\n";
+	system("pause");
+
+}
