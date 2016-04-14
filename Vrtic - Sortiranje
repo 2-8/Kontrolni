@@ -1,0 +1,41 @@
+void fjaPrva(char *s, char *pom)
+{
+	char godina[50], ime[50];
+	int p = strrchr(s, ' ') - s;
+	strncpy(godina, s + p + 1, 4);
+	godina[4] = '\0';
+	int p1 = strrchr(s, ' ') - s;
+	strncpy(ime, s, p1);
+	ime[p1] = '\0';
+	strcat(godina, " ");
+	strcat(godina, ime);
+	strcpy(pom, godina);
+}
+void main()
+{
+	FILE *fd = fopen("vrtic.txt", "r");
+	char s[4][50], sn[50], pom[50];
+	int i = 0;
+	while (fgets(sn, 50, fd))
+	{
+		fjaPrva(sn, pom);
+		strcpy(s[i], pom);
+		i++;
+	}
+	for (i = 0; i<4; i++)
+		for (int j = 0; j<4; j++)
+		{
+			if (strcmp(s[i], s[j])>0)
+			{
+				strcpy(sn, s[i]);
+				strcpy(s[i], s[j]);
+				strcpy(s[j], sn);
+			}
+		}
+	for (i = 0; i<4; i++)
+	{
+		cout << "\nIzlaz: " << s[i] << endl;
+	}
+	fclose(fd);
+	system("pause");
+}
