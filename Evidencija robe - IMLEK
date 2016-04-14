@@ -1,0 +1,26 @@
+void Artikal(char *Naz, char *NoviNaz)
+
+{
+	char Ime[50], Cena[50];
+	int pp = strrchr(Naz, ' ') - Naz;
+	strcpy(Cena, Naz + pp);
+	strncpy(Ime, Naz, 5);
+	Ime[5] = '\0';
+	strcat(Ime, " ");
+	strcat(Ime, Cena);
+	strcpy(NoviNaz, Ime);
+}
+void main()
+{
+	FILE *fd = fopen("Roba.txt", "r");
+	char s[50], sn[50];
+	while (fgets(s, 50, fd))
+	{
+		Artikal(s, sn);
+		cout << "Izgled nove evidencije: " << sn << endl;
+	}
+	fclose(fd);
+	cout << "\nKRAJ!\n\n";
+	system("pause");
+
+} 
