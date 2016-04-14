@@ -1,0 +1,44 @@
+#include <iostream>
+#include <iomanip>
+#include <stdlib.h>
+#include <string.h>
+using namespace std;
+
+void fjaPrva(char *sp, char *sn, char *sg);
+#include <iostream>
+#include <iomanip>
+#include <stdlib.h>
+#include <string.h>
+using namespace std;
+
+void fjaPrva(char *sp, char *sn, char *sg)
+{
+	int p = strrchr(sp, ' ') - sp;
+	char s1[50], s2[50];
+	strcpy(s1, sp + p + 2);
+	strncpy(s2, sp, p);
+	s2[p] = '\0';
+	strcat(s1, " ");
+	strcat(s1, s2);
+	strcpy(sn, s1);
+	strncpy(sg, sn + 3, 3);
+	sg[3] = '\0';
+	strcpy(s2, "1");
+	strcat(s2, sg);
+	strcpy(sg, s2);
+}
+#include "Fja.h";
+
+void main()
+{
+	FILE *fd = fopen("jmbg.txt", "r");
+	char s[50], sn[50], sg[5];
+	while (fgets(s, 50, fd))
+	{
+		fjaPrva(s, sn, sg);
+		cout << "\nIzlaz: " << sn << endl;
+		cout << "\nGodina: " << sg << endl;
+	}
+	fclose(fd);
+	system("pause");
+}
