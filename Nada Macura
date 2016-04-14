@@ -1,0 +1,26 @@
+void noviDoktor(char *dok, char *noviDok)
+{
+	char sif[100], ime[30];
+	int pp = strrchr(dok,' ')-dok;
+	strncpy(sif,dok+pp+1,4);
+	sif[4] = '\0';
+	strncpy(ime, dok, pp-3);
+	ime[pp-3] = '\0';
+	strcat(sif," ");
+	strcat(sif,ime);
+	strcpy(noviDok,sif);
+}
+
+void main ()
+{
+	FILE *fd = fopen("Doktor.txt","r");
+	char s[50], sn[50];
+	while (fgets(s,50,fd))
+	{
+		noviDoktor(s,sn);
+		cout<<"Izgled novog "<<sn<<endl;
+	}
+	fclose (fd);
+	cout<<"KRAJ!\n\n";
+	system("pause");
+}
